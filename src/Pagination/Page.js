@@ -1,11 +1,9 @@
 import React from 'react'
-import TextField from '../Text'
 import formatNumber from '../formatNumber'
-import IconButton from '../IconButton'
 import BeforeIcon from 'react-icons/lib/md/chevron-left'
 import NextIcon from 'react-icons/lib/md/chevron-right'
 import autobind from 'autobind-decorator'
-import styles from './styles.css'
+import styles from './styles'
 
 export default class Page extends React.Component {
 
@@ -39,31 +37,24 @@ export default class Page extends React.Component {
   render () {
     return (
       <div>
-        <div style={{ display: 'inline-block' }}>
-          <IconButton
-            disabled={!this.props.result.hasPreviousPage}
-            onTouchTap={() => this.props.result.hasPreviousPage && this.props.setPage(this.props.page - 1)}>
-            <BeforeIcon />
-          </IconButton>
+        <div
+          style={this.props.result.hasPreviousPage ? styles.iconButton : styles.iconButtonDisabled}
+          onClick={() => this.props.result.hasPreviousPage && this.props.setPage(this.props.page - 1)}>
+          <BeforeIcon size={25} />
         </div>
         <div style={{ display: 'inline-block', position: 'relative', top: -7 }}>
-          page <TextField
+          page <input
             name='pageInput'
-            style={{ width: 40 }}
-            onKeyPress={this.onKeyPress}
-            inputStyle={{ textAlign: 'center' }}
             value={this.state.page}
             onChange={event => this.setState({page: event.target.value})}
+            onKeyPress={this.onKeyPress}
             onBlur={this.onPageBlur}
-            className={styles.pageInput}
-            underlineShow={false} /> of {formatNumber(this.props.result.totalPages)}
+            style={styles.pageInput} /> of {formatNumber(this.props.result.totalPages)}
         </div>
-        <div style={{ display: 'inline-block' }}>
-          <IconButton
-            disabled={!this.props.result.hasNextPage}
-            onTouchTap={() => this.props.result.hasNextPage && this.props.setPage(this.props.page + 1)}>
-            <NextIcon />
-          </IconButton>
+        <div
+          style={this.props.result.hasNextPage ? styles.iconButton : styles.iconButtonDisabled}
+          onClick={() => this.props.result.hasNextPage && this.props.setPage(this.props.page + 1)}>
+          <NextIcon size={25} />
         </div>
       </div>
     )

@@ -34,10 +34,10 @@ export default class Table extends React.Component {
   renderHead () {
     const cols = this.props.fields.map(field => {
       const sort = field.sort ? <Sort {...this.getSortProps(field)} /> : null
-      const style = field.sort ? styles.th + ' ' + styles.thSort : styles.th
-      const onTouchTap = field.sort ? () => this.toggleSort(field) : undefined
+      const style = field.sort ? {...styles.th, ...styles.thSort} : styles.th
+      const onClick = field.sort ? () => this.toggleSort(field) : undefined
       return (
-        <th key={field.name} style={style} onTouchTap={onTouchTap}>
+        <th key={field.name} style={style} onClick={onClick}>
           {sort}
           {field.title}
         </th>
@@ -72,7 +72,7 @@ export default class Table extends React.Component {
         )
       })
       return (
-        <tr key={item._id} style={isSelected ? styles.selected : {cursor: 'pointer'}} onTouchTap={() => this.props.onSelect(item, index)}>
+        <tr key={item._id} style={isSelected ? styles.selected : {cursor: 'pointer'}} onClick={() => this.props.onSelect(item, index)}>
           {cols}
         </tr>
       )
@@ -81,7 +81,7 @@ export default class Table extends React.Component {
 
   render () {
     return (
-      <div style='table hoverable'>
+      <div className='table hoverable' style={styles.container}>
         <table>
           <thead>
             {this.renderHead()}

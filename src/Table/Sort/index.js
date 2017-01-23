@@ -11,8 +11,8 @@ export default class Sort extends React.Component {
   }
 
   render () {
-    const up = this.props.isActiveUp ? styles.arrowUp + ' ' + styles.active : styles.arrowUp
-    const down = this.props.isActiveDown ? styles.arrowDown + ' ' + styles.active : styles.arrowDown
+    const up = this.props.isActiveUp ? {...styles.arrowUp, ...styles.active} : styles.arrowUp
+    const down = this.props.isActiveDown ? {...styles.arrowDown, ...styles.active} : styles.arrowDown
     return (
       <span style={styles.container}>
         <UpIcon style={up} />

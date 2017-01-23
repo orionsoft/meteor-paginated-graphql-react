@@ -5,7 +5,7 @@ export default class Text extends React.Component {
 
   static propTypes = {
     onChange: React.PropTypes.func,
-    value: React.PropTypes.string,
+    value: React.PropTypes.any,
     fieldType: React.PropTypes.string,
     passProps: React.PropTypes.object,
     placeholder: React.PropTypes.node,

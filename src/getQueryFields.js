@@ -1,6 +1,6 @@
 import dot from 'dot-object'
 import keys from 'lodash/keys'
-import object from 'lodash/object'
+import zipObject from 'lodash/zipObject'
 
 const getStringValue = function (key, value) {
   if (value === '*') {
@@ -21,7 +21,7 @@ export default function (fields, extra) {
   fields.forEach(field => {
     fieldsNames.push(field.name)
   })
-  const dotFields = object(fieldsNames, fieldsNames.map(_ => '*'))
+  const dotFields = zipObject(fieldsNames, fieldsNames.map(_ => '*'))
   dot.object(dotFields)
   return getStringValue('', dotFields)
 }

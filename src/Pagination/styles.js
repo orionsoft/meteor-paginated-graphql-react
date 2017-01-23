@@ -11,9 +11,34 @@ export default reactCSS({
       textAlign: 'right'
     },
     pageInput: {
-      backgroundColor: '#ddd',
+      backgroundColor: '#eee',
       borderRadius: 5,
-      height: 40
+      height: 30,
+      width: 40,
+      fontSize: 16,
+      border: 0,
+      textAlign: 'center',
+      outline: 'none'
+    },
+    iconButton: {
+      display: 'inline-block',
+      position: 'relative',
+      top: -6,
+      cursor: 'pointer',
+      color: '#000'
+    },
+    iconButtonDisabled: {
+      display: 'inline-block',
+      position: 'relative',
+      top: -6,
+      color: '#ddd'
+    },
+    select: {
+      position: 'relative',
+      top: -2,
+      fontFamily: 'inherit',
+      backgroundColor: '#eee',
+      outline: 'none'
     }
   }
 })

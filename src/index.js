@@ -62,7 +62,7 @@ export default class Fetch extends React.Component {
        * If this is the default field to sort, the value should be the sort type. ASC or DESC
        */
       defaultSort: React.PropTypes.string
-    })),
+    })).isRequired,
     /**
      * Extra fields to bring
      */

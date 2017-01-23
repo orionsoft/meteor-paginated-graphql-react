@@ -10,12 +10,16 @@ export default reactCSS({
       flexDirection: 'column'
     },
     arrowUp: {
-      marign: -8,
-      color: '#888'
+      color: '#888',
+      margin: -8,
+      marginBottom: 0
     },
     arrowDown: {
-      margin: -8,
-      color: '#888'
+      color: '#888',
+      margin: -8
+    },
+    active: {
+      color: '#000000'
     }
   }
 })

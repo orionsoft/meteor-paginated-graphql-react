@@ -18,10 +18,7 @@ export default class Filter extends React.Component {
           <Field
             fieldName='filter'
             type={Text}
-            label='Search'
-            className='roundInput'
-            underlineShow={false}
-            useHint />
+            placeholder='Search' />
         </Form>
       </div>
     )
