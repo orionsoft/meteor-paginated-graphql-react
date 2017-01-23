@@ -1,6 +1,4 @@
-.*
-src/
-docs/
+src
 yarn.lock
 README.md
 LICENSE.md
