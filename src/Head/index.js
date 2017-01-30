@@ -22,7 +22,7 @@ export default class Head extends React.Component {
             {
               this.props.leftComponent
                 ? <this.props.leftComponent variables={this.props.variables} setVariable={this.props.setVariable} />
-              : <div style={styles.title}>{this.props.title}</div>
+              : <div className='paginated-head-title' style={styles.title}>{this.props.title}</div>
             }
           </div>
           <div style={styles.center}>
