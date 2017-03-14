@@ -3,7 +3,6 @@ import reactCSS from 'reactcss'
 export default reactCSS({
   'default': {
     container: {
-      backgroundColor: '#eee',
       padding: 10,
       borderRadius: 5
     },
@@ -14,7 +13,7 @@ export default reactCSS({
       cursor: 'pointer'
     },
     selected: {
-      backgroundColor: '#cacaca',
+      backgroundColor: '#eee',
       cursor: 'pointer'
     }
   }
