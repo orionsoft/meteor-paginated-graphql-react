@@ -127,7 +127,7 @@ export default class Fetch extends React.Component {
     const queryContainer = graphql(gql`${this.getQuery(props)}`, {
       options: ({ variables }) => {
         return {
-          forceFetch: true,
+          fetchPolicy: 'cache-and-network',
           variables,
           pollInterval: this.props.pollInterval * 1000
         }
