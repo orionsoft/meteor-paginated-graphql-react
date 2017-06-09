@@ -82,7 +82,11 @@ export default class Fetch extends React.Component {
     /**
      * Pass the id of the selected item to highlight then in the table
      */
-    selectedItemId: React.PropTypes.string
+    selectedItemId: React.PropTypes.string,
+    /**
+     * Default limit
+     */
+    defaultLimit: React.PropTypes.number
   }
 
   static defaultProps = {
@@ -90,23 +94,23 @@ export default class Fetch extends React.Component {
     headCenterComponent: () => <div />,
     headBottomComponent: () => <div />,
     onPress: () => {},
-    pollInterval: 120
-  }
-
-  state = {
-    page: 1,
-    limit: 10,
-    variables: {}
+    pollInterval: 120,
+    defaultLimit: 10
   }
 
   constructor (props) {
     super(props)
+    this.state = {
+      page: 1,
+      limit: this.props.defaultLimit,
+      variables: {}
+    }
     this.createChild(props)
   }
 
   // public reload function
   async reload () {
-    return await this.refs.child.refs.child.queryObservable.refetch()
+    return this.refs.child.refs.child.queryObservable.refetch()
   }
 
   componentWillReceiveProps (nextProps) {
