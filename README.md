@@ -47,7 +47,8 @@ export default class List extends React.Component {
         <Paginated
           queryName='transactions'
           fields={this.getFields()}
-          onPress={this.onSelect} />
+          onPress={this.onSelect}
+          extraFields={['field1', 'field2']} />
       </div>
     )
   }
