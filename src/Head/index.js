@@ -16,19 +16,19 @@ export default class Head extends React.Component {
 
   render () {
     return (
-      <div>
-        <div style={styles.container}>
-          <div style={styles.left}>
+      <div className='paginated-head'>
+        <div className='paginated-head-container' style={styles.container}>
+          <div className='paginated-head-left' style={styles.left}>
             {
               this.props.leftComponent
                 ? <this.props.leftComponent variables={this.props.variables} setVariable={this.props.setVariable} />
-              : <div className='paginated-head-title' style={styles.title}>{this.props.title}</div>
+                : <div className='paginated-head-title' style={styles.title}>{this.props.title}</div>
             }
           </div>
-          <div style={styles.center}>
+          <div className='paginated-head-center' style={styles.center}>
             <this.props.centerComponent variables={this.props.variables} setVariable={this.props.setVariable} />
           </div>
-          <div style={styles.filter}>
+          <div className='paginated-head-right' style={styles.filter}>
             {
               this.props.rightComponent
                 ? <this.props.rightComponent variables={this.props.variables} setVariable={this.props.setVariable} />

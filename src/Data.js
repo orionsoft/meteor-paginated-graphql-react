@@ -71,7 +71,7 @@ export default class Data extends React.Component {
       }
     }
     return (
-      <div className='box'>
+      <div className='paginated-container box'>
         {this.renderTable()}
         <Pagination {...this.props} result={this.props.data.result} />
       </div>

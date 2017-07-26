@@ -10,11 +10,11 @@ export default class Message extends React.Component {
 
   render () {
     return (
-      <div style={styles.container}>
-        <div>
+      <div className='paginated-error' style={styles.container}>
+        <div className='paginated-error-icon'>
           <ErrorIcon style={styles.icon} />
         </div>
-        <div style={styles.message}>
+        <div className='paginated-error-message' style={styles.message}>
           {this.props.message}
         </div>
       </div>

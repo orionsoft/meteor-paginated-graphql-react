@@ -14,7 +14,7 @@ export default class Sort extends React.Component {
     const up = this.props.isActiveUp ? {...styles.arrowUp, ...styles.active} : styles.arrowUp
     const down = this.props.isActiveDown ? {...styles.arrowDown, ...styles.active} : styles.arrowDown
     return (
-      <span style={styles.container}>
+      <span className='paginated-sort' style={styles.container}>
         <UpIcon style={up} />
         <DownIcon style={down} />
       </span>

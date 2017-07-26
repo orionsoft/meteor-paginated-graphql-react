@@ -9,7 +9,7 @@ export default class Loading extends React.Component {
 
   render () {
     return (
-      <div style={styles.container}>
+      <div className='paginated-loading' style={styles.container}>
         Loading...
       </div>
     )

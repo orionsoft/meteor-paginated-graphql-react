@@ -18,7 +18,7 @@ export default class Text extends React.Component {
 
   render () {
     return (
-      <div style={styles.container}>
+      <div style={styles.container} className='paginated-text-field'>
         <input
           style={styles.input}
           type={this.props.fieldType}
@@ -26,7 +26,7 @@ export default class Text extends React.Component {
           placeholder={this.props.placeholder}
           onChange={event => this.props.onChange(event.target.value)}
           {...this.props.passProps} />
-        <div style={styles.error}>{this.props.errorMessage}</div>
+        <div style={styles.error} className='paginated-text-field-error'>{this.props.errorMessage}</div>
       </div>
     )
   }

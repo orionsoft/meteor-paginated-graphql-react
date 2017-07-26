@@ -81,7 +81,7 @@ export default class Table extends React.Component {
 
   render () {
     return (
-      <div className='table hoverable' style={styles.container}>
+      <div className='paginated-table table hoverable' style={styles.container}>
         <table>
           <thead>
             {this.renderHead()}

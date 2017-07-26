@@ -15,7 +15,7 @@ export default class Pagination extends React.Component {
 
   render () {
     return (
-      <div style={styles.container}>
+      <div className='paginated-pagination' style={styles.container}>
         <div style={styles.limitContainer}>
           <Limit {...this.props} />
         </div>

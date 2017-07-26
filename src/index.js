@@ -208,7 +208,7 @@ export default class Fetch extends React.Component {
   render () {
     const variables = this.getVariables(this.props)
     return (
-      <div>
+      <div className='paginated-root'>
         <Head
           ref='head'
           title={this.props.headTitle}
