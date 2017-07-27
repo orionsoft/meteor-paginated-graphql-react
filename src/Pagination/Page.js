@@ -41,7 +41,7 @@ export default class Page extends React.Component {
           onClick={() => this.props.result.hasPreviousPage && this.props.setPage(this.props.page - 1)}>
           <BeforeIcon size={25} />
         </div>
-        <div style={{ display: 'inline-block', position: 'relative', top: -7 }}>
+        <div className='paginated-pagination-page-input-container'>
           page <input
             name='pageInput'
             value={this.state.page}
