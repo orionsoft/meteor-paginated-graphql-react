@@ -1,12 +1,12 @@
 {
   "name": "meteor-paginated-graphql-react",
-  "version": "1.4.1",
+  "version": "1.4.3",
   "main": "lib/index.js",
   "repository": "http://github.com/orionsoft/module",
   "author": "nicolaslopezj",
   "license": "MIT",
   "scripts": {
-    "build": "babel ./src --out-dir ./lib",
+    "build": "babel ./src --out-dir ./lib && yarn run build-styles",
     "build-styles": "find src/ -name '*.less' ! -name '*import.less' -exec lessc {} \\; > ./lib/styles.css",
     "prepublish": "npm run build",
     "test": "npm run lint && jest",
