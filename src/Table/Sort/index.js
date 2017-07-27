@@ -1,7 +1,6 @@
 import React from 'react'
 import UpIcon from 'react-icons/lib/md/arrow-drop-up'
 import DownIcon from 'react-icons/lib/md/arrow-drop-down'
-import styles from './styles'
 
 export default class Sort extends React.Component {
 
@@ -11,12 +10,12 @@ export default class Sort extends React.Component {
   }
 
   render () {
-    const up = this.props.isActiveUp ? {...styles.arrowUp, ...styles.active} : styles.arrowUp
-    const down = this.props.isActiveDown ? {...styles.arrowDown, ...styles.active} : styles.arrowDown
+    const up = this.props.isActiveUp ? 'paginated-sort-arrow-up active' : 'paginated-sort-arrow-up'
+    const down = this.props.isActiveDown ? 'paginated-sort-arrow-down active' : 'paginated-sort-arrow-down'
     return (
-      <span className='paginated-sort' style={styles.container}>
-        <UpIcon style={up} />
-        <DownIcon style={down} />
+      <span className='paginated-sort'>
+        <UpIcon className={up} />
+        <DownIcon className={down} />
       </span>
     )
   }

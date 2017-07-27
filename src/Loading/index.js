@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './styles'
 
 export default class Loading extends React.Component {
 
@@ -9,7 +8,7 @@ export default class Loading extends React.Component {
 
   render () {
     return (
-      <div className='paginated-loading' style={styles.container}>
+      <div className='paginated-loading'>
         Loading...
       </div>
     )

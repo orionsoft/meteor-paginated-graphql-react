@@ -1,7 +1,6 @@
 import React from 'react'
 import dot from 'dot-object'
 import Sort from './Sort'
-import styles from './styles'
 
 export default class Table extends React.Component {
 
@@ -34,10 +33,10 @@ export default class Table extends React.Component {
   renderHead () {
     const cols = this.props.fields.map(field => {
       const sort = field.sort ? <Sort {...this.getSortProps(field)} /> : null
-      const style = field.sort ? {...styles.th, ...styles.thSort} : styles.th
+      const style = field.sort ? 'paginated-th-sort' : ''
       const onClick = field.sort ? () => this.toggleSort(field) : undefined
       return (
-        <th key={field.name} style={style} onClick={onClick}>
+        <th key={field.name} className={style} onClick={onClick}>
           {sort}
           {field.title}
         </th>
@@ -72,7 +71,7 @@ export default class Table extends React.Component {
         )
       })
       return (
-        <tr key={item._id} style={isSelected ? styles.selected : {cursor: 'pointer'}} onClick={() => this.props.onSelect(item, index)}>
+        <tr key={item._id} className={isSelected ? 'paginated-table-row selected' : 'paginated-table-row'} onClick={() => this.props.onSelect(item, index)}>
           {cols}
         </tr>
       )
@@ -81,7 +80,7 @@ export default class Table extends React.Component {
 
   render () {
     return (
-      <div className='paginated-table table hoverable' style={styles.container}>
+      <div className='paginated-table table hoverable'>
         <table>
           <thead>
             {this.renderHead()}

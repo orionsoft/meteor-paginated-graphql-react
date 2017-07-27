@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './styles'
 import Filter from './Filter'
 
 export default class Head extends React.Component {
@@ -17,22 +16,22 @@ export default class Head extends React.Component {
   render () {
     return (
       <div className='paginated-head'>
-        <div className='paginated-head-container' style={styles.container}>
-          <div className='paginated-head-left' style={styles.left}>
+        <div className='paginated-head-container'>
+          <div className='paginated-head-left'>
             {
               this.props.leftComponent
                 ? <this.props.leftComponent variables={this.props.variables} setVariable={this.props.setVariable} />
-                : <div className='paginated-head-title' style={styles.title}>{this.props.title}</div>
+                : <div className='paginated-head-title'>{this.props.title}</div>
             }
           </div>
-          <div className='paginated-head-center' style={styles.center}>
+          <div className='paginated-head-center'>
             <this.props.centerComponent variables={this.props.variables} setVariable={this.props.setVariable} />
           </div>
-          <div className='paginated-head-right' style={styles.filter}>
+          <div className='paginated-head-right'>
             {
               this.props.rightComponent
                 ? <this.props.rightComponent variables={this.props.variables} setVariable={this.props.setVariable} />
-              : <Filter variables={this.props.variables} setVariable={this.props.setVariable} />
+                : <Filter variables={this.props.variables} setVariable={this.props.setVariable} />
             }
           </div>
         </div>

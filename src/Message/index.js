@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './styles'
 import ErrorIcon from 'react-icons/lib/md/error'
 
 export default class Message extends React.Component {
@@ -10,11 +9,11 @@ export default class Message extends React.Component {
 
   render () {
     return (
-      <div className='paginated-error' style={styles.container}>
+      <div className='paginated-error'>
         <div className='paginated-error-icon'>
-          <ErrorIcon style={styles.icon} />
+          <ErrorIcon />
         </div>
-        <div className='paginated-error-message' style={styles.message}>
+        <div className='paginated-error-message'>
           {this.props.message}
         </div>
       </div>

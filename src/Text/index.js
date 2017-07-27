@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './styles'
 
 export default class Text extends React.Component {
 
@@ -18,15 +17,15 @@ export default class Text extends React.Component {
 
   render () {
     return (
-      <div style={styles.container} className='paginated-text-field'>
+      <div className='paginated-text-field'>
         <input
-          style={styles.input}
+          className='paginated-text-field-input'
           type={this.props.fieldType}
           value={this.props.value}
           placeholder={this.props.placeholder}
           onChange={event => this.props.onChange(event.target.value)}
           {...this.props.passProps} />
-        <div style={styles.error} className='paginated-text-field-error'>{this.props.errorMessage}</div>
+        <div className='paginated-text-field-error'>{this.props.errorMessage}</div>
       </div>
     )
   }

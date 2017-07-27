@@ -1,12 +1,13 @@
 {
   "name": "meteor-paginated-graphql-react",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "main": "lib/index.js",
   "repository": "http://github.com/orionsoft/module",
   "author": "nicolaslopezj",
   "license": "MIT",
   "scripts": {
     "build": "babel ./src --out-dir ./lib",
+    "build-styles": "find src/ -name '*.less' ! -name '*import.less' -exec lessc {} \\; > ./lib/styles.css",
     "prepublish": "npm run build",
     "test": "npm run lint && jest",
     "watch": "node watch.js",
@@ -27,6 +28,7 @@
     "eslint-config-orionsoft": "^1.0.8",
     "graphql-tag": "^2.0.0",
     "jest-cli": "^19.0.2",
+    "less": "^2.7.2",
     "react-apollo": "^1.0.0",
     "standard": "^10.0.0"
   },

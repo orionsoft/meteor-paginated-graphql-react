@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './styles'
 import Limit from './Limit'
 import Page from './Page'
 
@@ -15,11 +14,11 @@ export default class Pagination extends React.Component {
 
   render () {
     return (
-      <div className='paginated-pagination' style={styles.container}>
-        <div style={styles.limitContainer}>
+      <div className='paginated-pagination'>
+        <div>
           <Limit {...this.props} />
         </div>
-        <div style={styles.pagesContainer}>
+        <div>
           <Page {...this.props} />
         </div>
       </div>

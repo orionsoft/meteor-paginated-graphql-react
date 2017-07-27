@@ -1,5 +1,11 @@
 # Orionsoft
 
+Import styles
+
+```js
+import 'meteor-paginated-graphql-react/lib/styles.css'
+```
+
 Example
 
 ```js

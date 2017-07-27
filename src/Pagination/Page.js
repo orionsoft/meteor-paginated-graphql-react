@@ -3,7 +3,6 @@ import formatNumber from '../formatNumber'
 import BeforeIcon from 'react-icons/lib/md/chevron-left'
 import NextIcon from 'react-icons/lib/md/chevron-right'
 import autobind from 'autobind-decorator'
-import styles from './styles'
 
 export default class Page extends React.Component {
 
@@ -38,7 +37,7 @@ export default class Page extends React.Component {
     return (
       <div>
         <div
-          style={this.props.result.hasPreviousPage ? styles.iconButton : styles.iconButtonDisabled}
+          className={this.props.result.hasPreviousPage ? 'paginated-pagination-page-icon' : 'paginated-pagination-page-icon-disabled'}
           onClick={() => this.props.result.hasPreviousPage && this.props.setPage(this.props.page - 1)}>
           <BeforeIcon size={25} />
         </div>
@@ -49,10 +48,10 @@ export default class Page extends React.Component {
             onChange={event => this.setState({page: event.target.value})}
             onKeyPress={this.onKeyPress}
             onBlur={this.onPageBlur}
-            style={styles.pageInput} /> of {formatNumber(this.props.result.totalPages)}
+            className='paginated-pagination-page-input' /> of {formatNumber(this.props.result.totalPages)}
         </div>
         <div
-          style={this.props.result.hasNextPage ? styles.iconButton : styles.iconButtonDisabled}
+          className={this.props.result.hasPreviousPage ? 'paginated-pagination-page-icon' : 'paginated-pagination-page-icon-disabled'}
           onClick={() => this.props.result.hasNextPage && this.props.setPage(this.props.page + 1)}>
           <NextIcon size={25} />
         </div>
