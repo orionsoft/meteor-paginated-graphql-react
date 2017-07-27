@@ -3,6 +3,7 @@ import Pagination from './Pagination'
 import Table from './Table'
 import Loading from './Loading'
 import Message from './Message'
+import PropTypes from 'prop-types'
 
 export default class Data extends React.Component {
 
@@ -14,7 +15,12 @@ export default class Data extends React.Component {
     sortType: React.PropTypes.string,
     setSort: React.PropTypes.func.isRequired,
     debouncing: React.PropTypes.bool,
-    selectedItemId: React.PropTypes.string
+    selectedItemId: React.PropTypes.string,
+    loadingComponent: PropTypes.any
+  }
+
+  static defaultProps = {
+    loadingComponent: Loading
   }
 
   height = 300
@@ -28,7 +34,7 @@ export default class Data extends React.Component {
   }
 
   renderLoading () {
-    return <Loading height={this.height} />
+    return <this.props.loadingComponent height={this.height} />
   }
 
   renderNotFound () {
