@@ -15,10 +15,10 @@ export default class Pagination extends React.Component {
   render () {
     return (
       <div className='paginated-pagination'>
-        <div>
+        <div className='paginated-pagination-limit'>
           <Limit {...this.props} />
         </div>
-        <div>
+        <div className='paginated-pagination-pages'>
           <Page {...this.props} />
         </div>
       </div>
