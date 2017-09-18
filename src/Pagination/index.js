@@ -1,15 +1,16 @@
 import React from 'react'
 import Limit from './Limit'
 import Page from './Page'
+import PropTypes from 'prop-types'
 
 export default class Pagination extends React.Component {
 
   static propTypes = {
-    result: React.PropTypes.object,
-    page: React.PropTypes.number,
-    limit: React.PropTypes.number,
-    setPage: React.PropTypes.func.isRequired,
-    setLimit: React.PropTypes.func.isRequired
+    result: PropTypes.object,
+    page: PropTypes.number,
+    limit: PropTypes.number,
+    setPage: PropTypes.func.isRequired,
+    setLimit: PropTypes.func.isRequired
   }
 
   render () {

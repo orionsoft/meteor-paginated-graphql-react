@@ -1,10 +1,11 @@
 import React from 'react'
 import ErrorIcon from 'react-icons/lib/md/error'
+import PropTypes from 'prop-types'
 
 export default class Message extends React.Component {
 
   static propTypes = {
-    message: React.PropTypes.node
+    message: PropTypes.node
   }
 
   render () {

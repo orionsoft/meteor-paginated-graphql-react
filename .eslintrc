@@ -1,7 +1,3 @@
 {
-  "parser": "babel-eslint",
-  "extends": ["orionsoft", "standard-react"],
-  "rules": {
-    "react/no-unused-prop-types": 0
-  }
+  "extends": "orionsoft"
 }

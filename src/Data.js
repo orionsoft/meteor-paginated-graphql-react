@@ -1,61 +1,51 @@
 import React from 'react'
 import Pagination from './Pagination'
 import Table from './Table'
-import Loading from './Loading'
 import Message from './Message'
 import PropTypes from 'prop-types'
 
 export default class Data extends React.Component {
-
   static propTypes = {
-    data: React.PropTypes.object,
-    fields: React.PropTypes.array,
-    onPress: React.PropTypes.func,
-    sortBy: React.PropTypes.string,
-    sortType: React.PropTypes.string,
-    setSort: React.PropTypes.func.isRequired,
-    debouncing: React.PropTypes.bool,
-    selectedItemId: React.PropTypes.string,
+    data: PropTypes.object,
+    fields: PropTypes.array,
+    onPress: PropTypes.func,
+    sortBy: PropTypes.string,
+    sortType: PropTypes.string,
+    setSort: PropTypes.func,
+    debouncing: PropTypes.bool,
+    selectedItemId: PropTypes.string,
     loadingComponent: PropTypes.any
   }
 
-  static defaultProps = {
-    loadingComponent: Loading
+  renderLoading() {
+    if (!this.props.loadingComponent) return <span />
+    return <this.props.loadingComponent />
   }
 
-  height = 300
-
-  calculateHeight () {
-    setTimeout(() => {
-      if (this.refs.items) {
-        this.height = this.refs.items.clientHeight
-      }
-    }, 200)
+  renderNotFound() {
+    return <Message message="No items found" />
   }
 
-  renderLoading () {
-    return <this.props.loadingComponent height={this.height} />
-  }
-
-  renderNotFound () {
-    return <Message message='No items found' />
-  }
-
-  renderError () {
-    let message = this.props.data.error.message
-    if (this.props.data.error && this.props.data.error.graphQLErrors && this.props.data.error.graphQLErrors[0]) {
+  renderError() {
+    let message = 'Error'
+    if (
+      this.props.data.error &&
+      this.props.data.error.graphQLErrors &&
+      this.props.data.error.graphQLErrors[0]
+    ) {
       message = this.props.data.error.graphQLErrors[0].message
     }
     return <Message message={message} />
   }
 
-  renderTable () {
+  renderTable() {
     if (this.props.debouncing) return this.renderLoading()
     if (this.props.data.loading) return this.renderLoading()
-    if (!this.props.data.result.items || this.props.data.result.items.length === 0) return this.renderNotFound()
-    this.calculateHeight()
+    if (!this.props.data.result.items || this.props.data.result.items.length === 0) {
+      return this.renderNotFound()
+    }
     return (
-      <div ref='items'>
+      <div ref="items">
         <Table
           sortBy={this.props.sortBy}
           sortType={this.props.sortType}
@@ -63,25 +53,28 @@ export default class Data extends React.Component {
           onSelect={this.props.onPress}
           selectedItemId={this.props.selectedItemId}
           items={this.props.data.result.items}
-          fields={this.props.fields} />
+          fields={this.props.fields}
+        />
       </div>
     )
   }
 
-  render () {
+  render() {
     if (!this.props.data.result) {
-      if (this.props.data.loading) {
+      if (
+        (this.props.data.networkStatus === 1 && Object.keys(this.props.data).length === 10) ||
+        this.props.data.networkStatus === 2
+      ) {
         return this.renderLoading()
       } else {
         return this.renderError()
       }
     }
     return (
-      <div className='paginated-container box'>
+      <div className="paginated-container box">
         {this.renderTable()}
         <Pagination {...this.props} result={this.props.data.result} />
       </div>
     )
   }
-
 }

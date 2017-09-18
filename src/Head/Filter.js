@@ -1,12 +1,13 @@
 import React from 'react'
 import {Form, Field} from 'simple-react-form'
 import Text from '../Text'
+import PropTypes from 'prop-types'
 
 export default class Filter extends React.Component {
 
   static propTypes = {
-    variables: React.PropTypes.object,
-    setVariable: React.PropTypes.func
+    variables: PropTypes.object,
+    setVariable: PropTypes.func
   }
 
   render () {

@@ -9,84 +9,91 @@ import autobind from 'autobind-decorator'
 import debounce from './debounce'
 import isEqual from 'lodash/isEqual'
 import pick from 'lodash/pick'
+import PropTypes from 'prop-types'
+import LoadingIndicator from './LoadingIndicator'
 
 export default class Fetch extends React.Component {
-
   static propTypes = {
     /**
      * Head title
      */
-    headTitle: React.PropTypes.any,
+    headTitle: PropTypes.any,
     /**
      * Head bottom component
      */
-    headBottomComponent: React.PropTypes.func,
+    headBottomComponent: PropTypes.func,
     /**
      * Head center component
      */
-    headCenterComponent: React.PropTypes.func,
+    headCenterComponent: PropTypes.func,
     /**
      * Head left component
      */
-    headLeftComponent: React.PropTypes.func,
+    headLeftComponent: PropTypes.func,
     /**
      * Head right component
      */
-    headRightComponent: React.PropTypes.func,
+    headRightComponent: PropTypes.func,
     /**
      * Name of the query. Ex: backendEvents, producers
      */
-    queryName: React.PropTypes.string.isRequired,
+    queryName: PropTypes.string.isRequired,
     /**
      * Fields to display
      */
-    fields: React.PropTypes.arrayOf(React.PropTypes.shape({
-      /**
+    fields: PropTypes.arrayOf(
+      PropTypes.shape({
+        /**
        * Title in the header
        */
-      title: React.PropTypes.string,
-      /**
+        title: PropTypes.string,
+        /**
        * A render function
        * Args: (value, doc, index)
        */
-      render: React.PropTypes.func,
-      /**
+        render: PropTypes.func,
+        /**
        * Name of the field
        */
-      name: React.PropTypes.string.isRequired,
-      /**
+        name: PropTypes.string.isRequired,
+        /**
        * The default sort when activated. If present it can sort by this field. ASC or DESC
        */
-      sort: React.PropTypes.string,
-      /**
+        sort: PropTypes.string,
+        /**
        * If this is the default field to sort, the value should be the sort type. ASC or DESC
        */
-      defaultSort: React.PropTypes.string
-    })).isRequired,
+        defaultSort: PropTypes.string
+      })
+    ).isRequired,
     /**
      * Extra fields to bring
      */
-    extraFields: React.PropTypes.arrayOf(React.PropTypes.string),
+    extraFields: PropTypes.arrayOf(PropTypes.string),
     /**
      * Declare the graphql params for the query
      */
-    params: React.PropTypes.string,
+    params: PropTypes.string,
     /**
      * When use choose the item
      */
-    onPress: React.PropTypes.func,
+    onPress: PropTypes.func,
     /**
      * Apollo poll interval for refetch, default to 20s. Set to null to deactivate. In seconds
      */
-    pollInterval: React.PropTypes.number,
+    pollInterval: PropTypes.number,
     /**
      * Pass the id of the selected item to highlight then in the table
      */
-    selectedItemId: React.PropTypes.string,
+    selectedItemId: PropTypes.string,
     /**
      * Default limit
      */
-    defaultLimit: React.PropTypes.number
+    defaultLimit: PropTypes.number,
+    /**
+     * Loading component
+     */
+    loadingComponent: PropTypes.any
   }
 
   static defaultProps = {
@@ -94,11 +101,12 @@ export default class Fetch extends React.Component {
     headCenterComponent: () => <div />,
     headBottomComponent: () => <div />,
     onPress: () => {},
-    pollInterval: 120,
-    defaultLimit: 10
+    pollInterval: 0,
+    defaultLimit: 10,
+    loadingComponent: LoadingIndicator
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       page: 1,
@@ -109,11 +117,11 @@ export default class Fetch extends React.Component {
   }
 
   // public reload function
-  async reload () {
+  async reload() {
     return this.refs.child.refs.child.queryObservable.refetch()
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     const newQuery = this.getQuery(nextProps)
     const currentQuery = this.getQuery(this.props)
     if (newQuery !== currentQuery) {
@@ -127,13 +135,13 @@ export default class Fetch extends React.Component {
     }
   }
 
-  createChild (props) {
+  createChild(props) {
     const queryContainer = graphql(gql`${this.getQuery(props)}`, {
-      options: ({ variables }) => {
+      options: ({variables}) => {
         return {
-          fetchPolicy: 'cache-and-network',
           variables,
-          pollInterval: this.props.pollInterval * 1000
+          fetchPolicy: 'network-only',
+          pollInterval: this.props.pollInterval ? this.props.pollInterval : null
         }
       }
     })
@@ -141,7 +149,7 @@ export default class Fetch extends React.Component {
     this.Child = debounce(child)
   }
 
-  getQuery (props) {
+  getQuery(props) {
     return `query paginated_${this.props.queryName} (
       $page: Int
       $limit: Int
@@ -165,7 +173,7 @@ export default class Fetch extends React.Component {
     }`
   }
 
-  getDefaultSort () {
+  getDefaultSort() {
     for (const field of this.props.fields) {
       if (field.defaultSort) {
         return {
@@ -177,7 +185,7 @@ export default class Fetch extends React.Component {
     return {}
   }
 
-  getVariables (props) {
+  getVariables(props) {
     const defaultSort = this.getDefaultSort()
     const variables = {
       limit: this.state.limit,
@@ -194,32 +202,33 @@ export default class Fetch extends React.Component {
   }
 
   @autobind
-  setVariable (key, value) {
+  setVariable(key, value) {
     const variables = this.state.variables
     variables[key] = value
     this.setState({variables, page: 1})
   }
 
   @autobind
-  setSort (sortBy, sortType) {
+  setSort(sortBy, sortType) {
     this.setState({sortBy, sortType})
   }
 
-  render () {
+  render() {
     const variables = this.getVariables(this.props)
     return (
-      <div className='paginated-root'>
+      <div className="paginated-root">
         <Head
-          ref='head'
+          ref="head"
           title={this.props.headTitle}
           bottomComponent={this.props.headBottomComponent}
           leftComponent={this.props.headLeftComponent}
           centerComponent={this.props.headCenterComponent}
           rightComponent={this.props.headRightComponent}
           variables={variables}
-          setVariable={this.setVariable} />
+          setVariable={this.setVariable}
+        />
         <this.Child
-          ref='child'
+          ref="child"
           selectedItemId={this.props.selectedItemId}
           variables={variables}
           onPress={this.props.onPress}
@@ -230,9 +239,10 @@ export default class Fetch extends React.Component {
           page={variables.page}
           setPage={page => this.setState({page})}
           limit={variables.limit}
-          setLimit={limit => this.setState({limit})} />
+          setLimit={limit => this.setState({limit})}
+          loadingComponent={this.props.loadingComponent}
+        />
       </div>
     )
   }
-
 }

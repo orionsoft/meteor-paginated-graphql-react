@@ -1,12 +1,13 @@
 import React from 'react'
 import UpIcon from 'react-icons/lib/md/arrow-drop-up'
 import DownIcon from 'react-icons/lib/md/arrow-drop-down'
+import PropTypes from 'prop-types'
 
 export default class Sort extends React.Component {
 
   static propTypes = {
-    isActiveUp: React.PropTypes.bool,
-    isActiveDown: React.PropTypes.bool
+    isActiveUp: PropTypes.bool,
+    isActiveDown: PropTypes.bool
   }
 
   render () {

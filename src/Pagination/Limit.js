@@ -1,13 +1,14 @@
 import React from 'react'
 import formatNumber from '../formatNumber'
 import autobind from 'autobind-decorator'
+import PropTypes from 'prop-types'
 
 export default class Component extends React.Component {
 
   static propTypes = {
-    limit: React.PropTypes.number,
-    setLimit: React.PropTypes.func,
-    result: React.PropTypes.object
+    limit: PropTypes.number,
+    setLimit: PropTypes.func,
+    result: PropTypes.object
   }
 
   @autobind

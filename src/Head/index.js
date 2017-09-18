@@ -1,16 +1,17 @@
 import React from 'react'
 import Filter from './Filter'
+import PropTypes from 'prop-types'
 
 export default class Head extends React.Component {
 
   static propTypes = {
-    bottomComponent: React.PropTypes.func,
-    rightComponent: React.PropTypes.func,
-    leftComponent: React.PropTypes.func,
-    title: React.PropTypes.any,
-    centerComponent: React.PropTypes.func.isRequired,
-    variables: React.PropTypes.object,
-    setVariable: React.PropTypes.func.isRequired
+    bottomComponent: PropTypes.func,
+    rightComponent: PropTypes.func,
+    leftComponent: PropTypes.func,
+    title: PropTypes.any,
+    centerComponent: PropTypes.func.isRequired,
+    variables: PropTypes.object,
+    setVariable: PropTypes.func.isRequired
   }
 
   render () {

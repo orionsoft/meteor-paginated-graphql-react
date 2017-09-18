@@ -1,17 +1,18 @@
 import React from 'react'
 import dot from 'dot-object'
 import Sort from './Sort'
+import PropTypes from 'prop-types'
 
 export default class Table extends React.Component {
 
   static propTypes = {
-    items: React.PropTypes.array,
-    fields: React.PropTypes.array.isRequired,
-    onSelect: React.PropTypes.func.isRequired,
-    sortBy: React.PropTypes.string,
-    sortType: React.PropTypes.string,
-    setSort: React.PropTypes.func.isRequired,
-    selectedItemId: React.PropTypes.string
+    items: PropTypes.array,
+    fields: PropTypes.array.isRequired,
+    onSelect: PropTypes.func.isRequired,
+    sortBy: PropTypes.string,
+    sortType: PropTypes.string,
+    setSort: PropTypes.func.isRequired,
+    selectedItemId: PropTypes.string
   }
 
   getSortProps (field) {
