@@ -7,8 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "babel ./src --out-dir ./lib && yarn run build-styles",
-    "build-styles":
-      "find src/ -name '*.less' ! -name '*import.less' -exec lessc {} \\; > ./lib/styles.css",
+    "build-styles": "find src/ -name '*.less' ! -name '*import.less' -exec lessc {} \\; > ./lib/styles.css",
     "prepublish": "npm run build",
     "test": "npm run lint && jest",
     "watch": "node watch.js",
@@ -42,10 +41,14 @@
     "autobind-decorator": "^2.1.0",
     "dot-object": "^1.6.0",
     "lodash": "^4.17.4",
+    "prop-types": "^15.6.0",
     "react-icons": "^2.2.5",
     "simple-react-form": "^2.0.0"
   },
   "jest": {
-    "testPathIgnorePatterns": ["/node_modules/", "/lib"]
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/lib"
+    ]
   }
 }
