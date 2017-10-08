@@ -4,25 +4,18 @@ import Text from '../Text'
 import PropTypes from 'prop-types'
 
 export default class Filter extends React.Component {
-
   static propTypes = {
     variables: PropTypes.object,
     setVariable: PropTypes.func
   }
 
-  render () {
+  render() {
     return (
-      <div>
-        <Form
-          state={this.props.variables}
-          onChange={({filter}) => this.props.setVariable('filter', filter)}>
-          <Field
-            fieldName='filter'
-            type={Text}
-            placeholder='Search' />
-        </Form>
-      </div>
+      <Form
+        state={this.props.variables}
+        onChange={({filter}) => this.props.setVariable('filter', filter)}>
+        <Field fieldName="filter" type={Text} placeholder="Search" />
+      </Form>
     )
   }
-
 }
