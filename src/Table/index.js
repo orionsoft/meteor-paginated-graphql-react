@@ -32,12 +32,12 @@ export default class Table extends React.Component {
   }
 
   renderHead () {
-    const cols = this.props.fields.map(field => {
+    const cols = this.props.fields.map((field, index) => {
       const sort = field.sort ? <Sort {...this.getSortProps(field)} /> : null
       const style = field.sort ? 'paginated-th-sort' : ''
       const onClick = field.sort ? () => this.toggleSort(field) : undefined
       return (
-        <th key={field.name} className={style} onClick={onClick}>
+        <th key={index} className={style} onClick={onClick}>
           {sort}
           {field.title}
         </th>
@@ -64,9 +64,9 @@ export default class Table extends React.Component {
   renderBody () {
     return this.props.items.map((item, index) => {
       const isSelected = this.props.selectedItemId === item._id
-      const cols = this.props.fields.map(field => {
+      const cols = this.props.fields.map((field, index2) => {
         return (
-          <td key={field.name}>
+          <td key={index2}>
             {this.renderValue(item, field, index)}
           </td>
         )
